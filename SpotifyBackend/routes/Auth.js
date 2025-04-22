@@ -30,6 +30,25 @@ router.post('/register',async(req,res)=>{
 }
 });
 
-module.exports = router;
+router.post('/login',async(req,res)=>{
+  const{email,password}=req.body;
+  const user=await User.findOne({email});
+  if(!user){
+    res.status(403).json({msg:"Invalid Credentials"})
+  }
+  else{
+    const isMatch=await bcrypt.compare(password,user.password);
+    if(!isMatch){
+      res.status(403).json({msg:"Invalid Credentials"})
+    }
+    else{
+      const token = await getToken(user.email,user);
+      const userToReturn={...user.toJSON(),token};
+      delete userToReturn.password;
+      return res.status(200).json(userToReturn);
+    }
+  }
+    
+})
 
-
+module.exports =router;
