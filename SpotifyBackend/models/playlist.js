@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const Playlist =new mongoose.Schema({
 PlaylistName:{
     type:String,
