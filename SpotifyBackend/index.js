@@ -4,6 +4,7 @@ const port = 3000;
 const passport=require('passport')
 const User = require('./models/User');
 const authRoutes=require('./routes/Auth')
+const songRoutes=require('./routes/song')
 const router = require('./routes/Auth');
 // connecting to database
 app.use(express.json());
@@ -38,6 +39,7 @@ passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
 console.log("DEBUG: Type of authRoutes:", typeof authRoutes);
 console.log("DEBUG: Value of authRoutes:", authRoutes);
 app.use("/auth",authRoutes);
+app.use("/song",songRoutes);
 app.get('/',(req,res)=>{
     res.send("hi there");
 });
