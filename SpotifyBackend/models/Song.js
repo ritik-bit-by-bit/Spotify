@@ -1,41 +1,25 @@
 const mongoose = require('mongoose');
-mongoose.connect("mongodb+srv://ritikroshanyadav9696:rascal1234@cluster0.lokbk.mongodb.net/");
 const Song =new mongoose.Schema({
-firstName:{
+SongName:{
     type:String,
     required:true
 },
-lastName:{
-    type:String,
-    required:false
+thumbnail:{
+type:String,
+required:true
 },
-email:{
+audio:{
     type:String,
     required:true
 },
-username:{
-    type:String,
-    require:true
-},
-LikeSongs:{
-    type:Array,
-    required:false
-},
-likedPlaylist:{
-    type:Array,
-    required:false
-},
-SubscribedArtist:{
-    type:Array,
-    required:false
-},
-password:{
-    type:String,
+Artist:{
+    type:mongoose.Types.ObjectId,
+    ref:"User",
     required:true
 }
 })
 
-const UserModel=mongoose.model("UserSchema",User);
-module.exports=UserModel;
+const SongModel=mongoose.model("Songollection",Song);
+module.exports=SongModel;
 
 
