@@ -10,20 +10,23 @@ router.post('/create',passport.authenticate("jwt",{session:false}),async(req,res
  if(!SongName || !thumbnail || !audio){
   return res.status(400).json({msg:"All fields are required"})
  }
- const artist = req.user._id;
- console.log(artist);
+
+ const Artist = req.user._id;
+ console.log(Artist);
  const songDetails={
     SongName,
     thumbnail,
     audio,
-    artist
+    Artist
  }
  const createdsong =await SongModel.create(songDetails);
   return res.status(200).json({msg:createdsong});
 })
 
 router.get('/get/mysong',passport.authenticate("jwt",{session:false}),async(req,res)=>{
-      const songs = await SongModel.find({artist:req.user._id});
+    console.log(req.user);
+      const songs = await SongModel.find({Artist:req.user._id});
+      console.log(songs);
       return res.status(200).json(songs);
 })
 module.exports=router; 
