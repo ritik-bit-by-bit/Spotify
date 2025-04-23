@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 const Song =new mongoose.Schema({
 SongName:{
@@ -15,11 +16,11 @@ audio:{
 Artist:{
     type:mongoose.Types.ObjectId,
     ref:"User",
-    required:true
+    required:false
 }
 })
 
-const SongModel=mongoose.model("Songollection",Song);
+const SongModel=mongoose.model("Songcollection",Song);
 module.exports=SongModel;
 
 
