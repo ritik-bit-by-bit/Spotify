@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const Playlist =new mongoose.Schema({
 PlaylistName:{
     type:String,
@@ -9,17 +10,17 @@ type:String,
 required:true
 },
 songs:[{
-    ttype:mongoose.Types.ObjectId,
-    ref:"Song"
+    type:mongoose.Types.ObjectId,
+    ref:"Songcollection"
 }],
 owner:{
     type:mongoose.Types.ObjectId,
-    ref:"User",
+    ref:"UserCollection",
     required:true
 },
 collaboraters:[{
     type:mongoose.Types.ObjectId,
-    ref:"User"
+    ref:"UserCollection"
 }]
 })
 

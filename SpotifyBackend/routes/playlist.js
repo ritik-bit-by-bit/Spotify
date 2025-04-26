@@ -1,20 +1,22 @@
 const express = require ('express');
-const router = express.Router;
+const router = express.Router();
+router.use(express.json());
 const passport= require('passport');
 const PlaylistModel= require('../models/playlist');
 const SongModel = require('../models/Song');
 router.post("/create", passport.authenticate("jwt",{session:false}),async(req,res)=>{
-    const {PlaylistName,thumbnail,songs,collaboraters} = req.body;
+    const {PlaylistName,thumbnail,songs} = req.body;
     
-    if(!PlaylistName || !thumbnail || !songs || !owner){
+    if(!PlaylistName || !thumbnail || !songs){
         return res.status(400).json({msg:"All fields are required"})
     }
+    const currentUser=req.user;
     const playlistDetails={
         PlaylistName,
         thumbnail,
         songs,
-        owner:req.user._id,
-        collaboraters
+        owner:currentUser._id,
+        collaboraters:[]
     }
     const createdPlaylist = await PlaylistModel.create(playlistDetails);
     return res.status(200).json({msg:createdPlaylist})
@@ -22,14 +24,14 @@ router.post("/create", passport.authenticate("jwt",{session:false}),async(req,re
 })
 router.get('/get/playlist/:playlistId',passport.authenticate("jwt",{session:false}),async(req,res)=>{
     const playlistId = req.params.playlistId;
-    const playlists = await PlaylistModel.findOne({_id:playlistId});
+    const playlists = await PlaylistModel.findById({_id:playlistId});
     if(!playlists){
         return res.status(404).json({msg:"Playlist not found"})
     }
     return res.status(200).json(playlists);
 })
 
-router.get('/get/artist/:artistId',passport.Authenticator("jwt",{session:false}),async(req,res)=>{
+router.get('/get/artist/:artistId',passport.authenticate("jwt",{session:false}),async(req,res)=>{
     const artistId = req.params.artistId;
     if(!artistId){
         return res.status(400).json({msg:" artistId are required"})
@@ -41,8 +43,10 @@ router.get('/get/artist/:artistId',passport.Authenticator("jwt",{session:false})
 })
 router.post("/add/song",passport.authenticate("jwt",{session:false}),async(req,res)=>{
     const currentUser=req.user;
+    console.log(currentUser._id);
     const {playlistId,songId} = req.body;
     const playlist = await PlaylistModel.findOne({_id:playlistId});
+    console.log(playlist);
     if(!playlist){
         return res.status(404).json({msg:"Playlist not found"})
     }
@@ -50,10 +54,10 @@ router.post("/add/song",passport.authenticate("jwt",{session:false}),async(req,r
     if(!song){
         return res.status(404).json({msg:"Song not found"})
     }
-    if(playlist.owner._id === currentUser._id ||playlist.collaboraters.includes(currentUser._id)){
+    if(playlist.owner.equals(currentUser._id) ||playlist.collaboraters.includes(currentUser._id)){
         playlist.songs.push(songId);
         await playlist.save();
-        return res.status(200).json({msg:`Song ${song.SongName}added to playlist ${playlist.PlaylistName}`})
+        return res.status(200).json({msg:`Song added to playlist ${playlist.PlaylistName}`})
         }
     else{
         return res.status(403).json({msg:"You are not authorized to add songs to this playlist"})

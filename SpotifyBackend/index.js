@@ -7,7 +7,7 @@ const passport = require('passport');
 const User = require('./models/User');
 const authRoutes = require('./routes/Auth');
 const songRoutes = require('./routes/song');
-// const router = require('./routes/Auth'); // This line seems redundant as authRoutes is already imported and used
+const playlistRoutes = require('./routes/playlist');
 
 // connecting to database
 app.use(express.json());
@@ -54,6 +54,7 @@ console.log("DEBUG: Type of authRoutes:", typeof authRoutes);
 console.log("DEBUG: Value of authRoutes:", authRoutes);
 app.use("/auth", authRoutes);
 app.use("/song", songRoutes);
+app.use("/playlist",playlistRoutes);
 app.get('/', (req, res) => {
     res.send("hi there");
 });

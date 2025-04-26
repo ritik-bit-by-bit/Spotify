@@ -30,9 +30,9 @@ router.get('/get/mysong',passport.authenticate("jwt",{session:false}),async(req,
       return res.status(200).json(songs);
 })
 
-router.get('get/artist',passport.authenticate("jwt",{session:false}),async(req,res)=>{
+router.get('/get/artist/:artistId',passport.authenticate("jwt",{session:false}),async(req,res)=>{
   console.log(req.user);
-  const artistId = req.body;
+  const artistId = req.params.artistId;
   const artist= await UserModel.find({_id:artistId});
   console.log(artist)
   if(!artist){
@@ -43,13 +43,14 @@ router.get('get/artist',passport.authenticate("jwt",{session:false}),async(req,r
   return res.status(200).json(songs);
 })
 
-router.get("get/name",passport.authenticate("jwt",{session:false}),async(req,res)=>{
-   const songName = req.body;
-   const song = await SongModel.find({SongName:songName});
+router.get("/get/name/:songName",passport.authenticate("jwt",{session:false}),async(req,res)=>{
+   const songName = req.params.songName;
+   const song = await SongModel.findOne({SongName:songName});
+   console.log(song);
    if(!song){
     return res.status(404).json({msg:"Song not found"})
    }
-   return res.status(200).json(song);
+   return res.status(200).json(song.audio);
 })
 
 module.exports=router; 

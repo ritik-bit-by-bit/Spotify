@@ -15,7 +15,7 @@ audio:{
 },
 Artist:{
     type:mongoose.Types.ObjectId,
-    ref:"User",
+    ref:"UserCollection",
     required:false
 }
 })

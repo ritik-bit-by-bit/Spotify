@@ -43,7 +43,7 @@ router.post('/login',async(req,res)=>{
     }
     else{
       const token = await getToken(user.email,user);
-      const userToReturn={...user.toJSON(),token};
+      const userToReturn={...user.toJSON(),token,"msg":"Login Successful"};
       delete userToReturn.password;
       return res.status(200).json(userToReturn);
     }
