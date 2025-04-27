@@ -1,14 +1,27 @@
 import { useState } from 'react'
 import './App.css'
-
+import { BrowserRouter,Routes,Route,Link } from 'react-router-dom'
+import LoginComponent from './Routes/Login'
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-      <div>
-        ghi there
+      <div className="w-screen h-screen">
+       <BrowserRouter>
+       <Routes>
+        <Route path="/" element={<DomElement/>}></Route>
+          <Route path="/login" element={<LoginComponent/>}></Route>
+       </Routes>
+       </BrowserRouter>
       </div>
   )
 }
-
-export default App
+function DomElement(){
+  return (
+    <div>
+      <div>hey yo </div>
+      <div>baby</div>
+      </div>
+  )
+}
+export default App;
