@@ -5,7 +5,7 @@ const Label = ({type,title, inputmessage})=>{
             {title}
           </div>
           <div className="pt-0.5 pb-2 pl-3 pr-6 ">
-            <input type={type} required={true} placeholder={inputmessage} className="border border-solid border-gray-300 w-full pt-1 pb-1 rounded-sm"></input>
+            <input type={type} required={true} placeholder={inputmessage} className="border border-solid border-gray-300 w-full pt-1 pb-1 rounded-sm hover:bg-lime-100"></input>
           </div>
        </div>
     )

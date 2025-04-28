@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Label from '../Components/Label'
 const LoginComponent = ()=>{
     return(
@@ -25,7 +26,7 @@ const LoginComponent = ()=>{
             <hr className="h-px mr-10 ml-2 my-4 w-73 bg-gray-200 border-0 dark:bg-gray-700"></hr>
             <div className='justify-self-center pb-4'>
             <button type='button' className='font-medium text-black bg-green-400   pr-5 pl-5 pt-1 pb- rounded-4xl shadow-lg shadow-green-400 hover:bg-white hover:text-green-400'>
-                    Sign Up for Spotify
+                <Link to='/signup'> Sign Up for Spotify</Link>
             </button>  
             </div>
             
