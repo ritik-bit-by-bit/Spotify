@@ -42,9 +42,9 @@ const SignUpComponent = () => {
         {/* Your Logo */}
     
         {/* Form Box */}
-        <div className="w-80  h-full p-6 bg-white rounded-2xl shadow-2xl">
+        <div className="w-2/3  h-full p-6 bg-white rounded-2xl shadow-2xl" style={{fontFamily:'Roboto'}}>
           <div className="font-bold text-2xl text-center text-black mb-4">
-            Sign up for free
+            Sign up and Explore  free!
           </div>
 
           <hr className="my-4 border-gray-700" />

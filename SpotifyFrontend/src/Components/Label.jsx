@@ -10,10 +10,10 @@ const Label = ({type,title, inputmessage,textcolor})=>{
           }
          
           {iscolor({color:textcolor})?<div className="pt-0.5 pb-2 pl-3 pr-6 ">
-            <input type={type} required={true} placeholder={inputmessage} className="text-white border border-solid border-gray-300 w-full pt-1 pb-1 rounded-sm hover:bg-white hover:text-green-400 hover: shadow-lg hover:shadow-lime-200"></input>
+            <input type={type} required={true} placeholder={inputmessage} className="text-white border border-solid border-gray-300 w-full pt-1 pb-1 rounded-sm hover:bg-white hover:text-green-400 hover: shadow-lg hover:shadow-green-400"></input>
           </div>:
           <div className="pt-0.5 pb-2 pl-3 pr-6 ">
-            <input type={type} required={true} placeholder={inputmessage} className=" border border-solid border-gray-300 w-full pt-1 pb-1 rounded-sm hover:bg-white hover:text-green-400 hover: shadow-lg hover:shadow-lime-200"></input>
+            <input type={type} required={true} placeholder={inputmessage} className=" border border-solid border-gray-300 w-full pt-1 pb-1 rounded-sm hover:bg-white hover:text-green-400 hover: shadow-lg hover:shadow-green-400"></input>
           </div>
           }
        </div>
