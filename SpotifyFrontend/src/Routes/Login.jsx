@@ -16,11 +16,11 @@ const LoginComponent = () => {
     return (
         <div className="w-screen h-screen md:flex bg-black">
             {/* Left Section - Video */}
-            <div className="w-3/3 md:w-2/3 h-full relative overflow-hidden">
+            <div className="sm: w-3/3 md:w-2/3 h-full relative overflow-hidden">
                 <video
                     ref={videoRef}
                     className="w-full h-full object-cover"
-                    autoPlay
+                    autoPlay 
                     loop
                     muted={isMuted}
                     src="./public/loginbg.mp4" // Adjust path if needed
