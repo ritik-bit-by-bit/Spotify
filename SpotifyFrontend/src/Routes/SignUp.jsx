@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Label from '../Components/Label';
 
 const SignUpComponent = () => {
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const videoRef = useRef(null);
 
   const toggleMute = () => {

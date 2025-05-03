@@ -4,7 +4,7 @@ import Label from '../Components/Label';
 
 const LoginComponent = () => {
     const videoRef = useRef(null);
-    const [isMuted, setIsMuted] = useState(true);
+    const [isMuted, setIsMuted] = useState(false);
 
     const toggleMute = () => {
         if (videoRef.current) {
