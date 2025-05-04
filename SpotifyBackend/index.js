@@ -1,6 +1,7 @@
 // c:\Users\jaira\OneDrive\Desktop\SpotifyClone\SpotifyBackend\index.js
 
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = 3000;
 const passport = require('passport');
@@ -10,6 +11,7 @@ const songRoutes = require('./routes/song');
 const playlistRoutes = require('./routes/playlist');
 
 // connecting to database
+app.use(cors());
 app.use(express.json());
 app.use(passport.initialize());
 require('dotenv').config();
