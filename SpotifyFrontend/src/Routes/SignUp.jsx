@@ -47,7 +47,7 @@ const SignUpComponent = () => {
       const token = response.token;
       setCookie('token',token, { path: '/',expires: date, });
      alert("Success");
-     navigate("/home");
+     navigate("/login");
     }
   else{
     alert(response.error);
