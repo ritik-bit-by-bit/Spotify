@@ -4,17 +4,24 @@ import { BrowserRouter,Routes,Route,Link } from 'react-router-dom'
 import LoginComponent from './Routes/Login'
 import SignUpComponent from './Routes/SignUp'
 import Home from './Routes/Home'
+import { useCookies } from 'react-cookie'
 function App() {
-  const [count, setCount] = useState(0)
+  const [cookie, setCookie] = useCookies(['token']);
 
   return (
       <div className="w-screen h-screen">
        <BrowserRouter>
-       <Routes>
+       {
+        cookie.token ?  (<Routes>
         <Route path="/home" element={<Home/>}></Route>
+        <Route path="*" element={<Home/>}></Route>
+       </Routes>):(      
+        <Routes>
         <Route path="/login" element={<LoginComponent/>}></Route>
         <Route path="/signup" element={<SignUpComponent/>}></Route>
-       </Routes>
+        <Route path="*" element={<LoginComponent/>}></Route>
+       </Routes>)
+       }
        </BrowserRouter>
       </div>
   )

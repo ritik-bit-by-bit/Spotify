@@ -30,7 +30,8 @@ SubscribedArtist:{
 },
 password:{
     type:String,
-    required:true
+    required:true,
+    private:true
 }
 })
 
