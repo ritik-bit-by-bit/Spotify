@@ -1,12 +1,14 @@
 import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Label from "../Components/Label";
+import { useCookies } from "react-cookie";
 
 const LoginComponent = () => {
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(false);
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
+  const [cookie, setCookie] = useCookies(['token']);
   const navigate = useNavigate();
 
   const toggleMute = () => {
@@ -26,7 +28,11 @@ const LoginComponent = () => {
         },
             body:JSON.stringify(data)}
         )
-        if(response){
+        if(response && !response.error){
+        const date = new Date();
+        date.setDate(date.getDate() + 30);
+        const token = response.token;
+        setCookie('token',token, { path: '/',expires: date, });
         const formattedResponse = await response.json()
         console.log(formattedResponse);
         navigate("/home");
