@@ -5,6 +5,7 @@ import LoginComponent from './Routes/Login'
 import SignUpComponent from './Routes/SignUp'
 import Home from './Routes/Home'
 import { useCookies } from 'react-cookie'
+import Loggedin from './Routes/Loggedin'
 function App() {
   const [cookie, setCookie] = useCookies(['token']);
 
@@ -13,13 +14,13 @@ function App() {
        <BrowserRouter>
        {
         cookie.token ?  (<Routes>
-        <Route path="/home" element={<Home/>}></Route>
-        <Route path="*" element={<Home/>}></Route>
+        <Route path="/home" element={<Loggedin/>}></Route>
+        <Route path="*" element={<Loggedin/>}></Route>
        </Routes>):(      
         <Routes>
         <Route path="/login" element={<LoginComponent/>}></Route>
         <Route path="/signup" element={<SignUpComponent/>}></Route>
-        <Route path="*" element={<LoginComponent/>}></Route>
+        <Route path="*" element={<Home/>}></Route>
        </Routes>)
        }
        </BrowserRouter>
